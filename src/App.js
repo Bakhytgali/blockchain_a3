@@ -9,6 +9,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Mainbody from "./components/Mainbody";
 import React from 'react';
+import AboutUs from "./components/AboutUs";
+import Submit from "./components/submit";
 
 
 function App() {
@@ -57,15 +59,18 @@ function App() {
     };
     connectWallet();
   }, []);
-  // console.log(state); <img src={chai} className="img-fluid" alt=".." width="100%" />
   return (
     <div>
       <NavigationBar />
       <Mainbody />
     <div className="container">
-      <h1 className="connected-account alert alert-primary" role="alert"><span className="lead text-center">Connected Account</span><br />{account}</h1>
+      <h1 className="connected-account alert alert-primary" role="alert"><span className="lead">Connected Account</span><br />{account}</h1>
       <Buy state={state} />
       <Memos state={state} />
+
+      <AboutUs />
+
+      <Submit/>
     </div>
     
   </div>

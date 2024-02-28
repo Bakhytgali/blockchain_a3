@@ -10,10 +10,13 @@
   .text-muted {
     color: #888888;
   }
-  
+
+  .alert-primary {
+      margin-bottom: 200px;
+  }
+
   .lead {
     font-size: 40px;
-    text-align: end;
   }
   
   /* Define styles for the connected account */
@@ -23,3 +26,4 @@
   .mes{
     color: black;
   }
+

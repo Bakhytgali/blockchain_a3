@@ -12,16 +12,15 @@ contract DKRCoin is ERC721A, Ownable{
     uint256 tokensReserved=10;
     uint256 public mintRate=0.005 ether;
     uint public totalTokensMinted;
-
     string public baseExtenstion = ".json";
     string internal baseTokenUri;
 
     bool public publicMintOpen = false;
     mapping(address => bool) public whitelist;
 
-    address payable owner;
+    address payable owner_address;
     constructor() ERC721A ("DKRCoin", "DKR"){
-        owner = payable(msg.sender);
+        owner_address = payable(msg.sender);
     }
     
     function setBaseTokenUri(string calldata baseTokenUri_) external onlyOwner {
@@ -72,7 +71,7 @@ contract DKRCoin is ERC721A, Ownable{
         payable(_addr).transfer(balance);
     }
 
-    function mint (uint256 quantity) public payable{
+    function mint(uint256 quantity) public payable{
         require(publicMintOpen, "Public Mint Closed");
         require(quantity + _numberMinted(msg.sender)<=MAX_MINTS, "Invalid quantity");
         require(totalSupply()+quantity<=(MAX_SUPPLY-tokensReserved), "SOLD OUT");

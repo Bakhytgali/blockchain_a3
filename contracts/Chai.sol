@@ -13,15 +13,15 @@ contract chai is Ownable{
     }
 
     Memo[] memos;
-    address payable owner;
+    address payable owner_address;
 
     constructor() {
-        owner = payable(msg.sender);
+        owner_address = payable(msg.sender);
     }
 
     function buyChai(string memory name, string memory message) public payable {
         require(msg.value > 0, "Please pay greater than 0 ether");
-        owner.transfer(msg.value);
+        owner_address.transfer(msg.value);
         memos.push(Memo(name, message, block.timestamp, msg.sender));
     }
 

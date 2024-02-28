@@ -26,6 +26,23 @@
     margin-left: 5px;
     font-size: 0.875rem;
   }
-  .mes{
-      color: white;
+
+  form {
+      padding: 13px;
   }
+
+  button.btn {
+      background-color: #CFE2FF;
+
+      border: 3px solid #CFE2FF;
+
+      transition: .2s linear;
+  }
+
+  button.btn:hover {
+      background-color: #fff;
+
+      border: 3px solid #CFE2FF;
+  }
+
+
