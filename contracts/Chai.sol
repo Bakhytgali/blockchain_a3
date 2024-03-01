@@ -12,6 +12,17 @@ contract chai is Ownable{
         address from;
     }
 
+    event ChaiBought(
+        string name,
+        string message,
+        uint256 timestamp,
+        address buyer,
+        uint256 amountPaid
+    );
+
+    event AddressAddedToWhitelist(address indexed addedAddress);
+    event AddressRemovedFromWhitelist(address indexed removedAddress);
+
     Memo[] memos;
     address payable owner_address;
 
@@ -23,6 +34,7 @@ contract chai is Ownable{
         require(msg.value > 0, "Please pay greater than 0 ether");
         owner_address.transfer(msg.value);
         memos.push(Memo(name, message, block.timestamp, msg.sender));
+        emit ChaiBought(name, message, block.timestamp, msg.sender, msg.value);
     }
 
     function getMemos() public view returns (Memo[] memory) {

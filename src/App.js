@@ -64,13 +64,15 @@ function App() {
       <NavigationBar />
       <Mainbody />
     <div className="container">
-      <h1 className="connected-account alert alert-primary" role="alert"><span className="lead">Connected Account</span><br />{account}</h1>
+      <h1 className="connected-account alert alert-primary" role="alert" style={{overflow: "hidden", textOverflow: "ellipsis"}}><span className="lead">Connected Account</span>
+        <br />
+        {account}
+      </h1>
       <Buy state={state} />
       <Memos state={state} />
 
       <AboutUs />
 
-      <Submit/>
     </div>
     
   </div>
