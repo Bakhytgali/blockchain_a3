@@ -122,6 +122,100 @@ receive() external payable {
 
 ```
 
+# DKRCoin NFT Contract
+
+## Overview
+
+DKRCoin is an ERC721A-based NFT contract that allows users to mint, own, and manage unique tokens. The contract implements basic functionalities for public minting, whitelisting, and owner-specific operations. It is built using Solidity and leverages OpenZeppelin's libraries for secure and standardized implementations.
+
+## Features
+
+- ERC721A: Efficient batch minting of NFTs.
+- Ownable: Restricts certain functions to the contract owner.
+- Whitelist Management: Allows the owner to manage a whitelist for minting privileges.
+- Minting Controls: Public minting can be toggled by the owner, with limits on the number of tokens an address can mint.
+- Withdraw Functionality: Allows the owner to withdraw contract funds to a specified address.
+- Token URI Management: Supports setting a base URI for token metadata.
+
+## Contract Details
+
+### State Variables
+
+- MAX_MINTS: Maximum number of tokens an address can mint.
+- MAX_SUPPLY: Maximum supply of NFTs.
+- tokensReserved: Tokens reserved for specific purposes (e.g., for the owner).
+- mintRate: Ether cost per token.
+- totalTokensMinted: Total number of tokens minted.
+- baseExtenstion: File extension for token metadata files.
+- baseTokenUri: Base URI for token metadata.
+- publicMintOpen: Boolean to control public minting.
+- whitelist: Mapping of addresses allowed to mint during restricted phases.
+
+### Events
+
+- Minted(address indexed owner, uint256 quantity): Emitted when tokens are minted.
+- WhitelistedAdded(address indexed account): Emitted when an address is added to the whitelist.
+- WhitelistedRemoved(address indexed account): Emitted when an address is removed from the whitelist.
+
+### Functions
+
+- setBaseTokenUri(string calldata baseTokenUri\_): Sets the base URI for token metadata.
+- receive() external payable: Fallback function to receive ether.
+- \_startTokenId() internal view override virtual returns (uint256): Override to start token IDs from 1.
+- tokenURI(uint256 tokenId\_) public view override returns (string memory): Returns the metadata URI for a given token ID.
+- editMint(bool \_publicMintOpen) external onlyOwner: Enables or disables public minting.
+- mintOwner(uint256 quantity) public onlyOwner: Allows the owner to mint reserved tokens.
+- addToWhitelist(address[] calldata toAddAddresses) external onlyOwner: Adds addresses to the whitelist.
+- removeFromWhitelist(address[] calldata toRemoveAddresses) external onlyOwner: Removes addresses from the whitelist.
+- withdraw(address \_addr) external onlyOwner: Allows the owner to withdraw contract funds.
+- mint(uint256 quantity) public payable: Public minting function.
+- getTotalTokensMinted() public view returns (uint256): Returns the total number of tokens minted.
+
+## Usage
+
+### Deployment
+
+Deploy the contract using a tool like Remix or Hardhat. Make sure to install the required dependencies:
+
+- @openzeppelin/contracts
+- erc721a/contracts
+
+### Minting
+
+To mint tokens, interact with the mint function. Ensure publicMintOpen is set to true, and you provide sufficient ether based on the mintRate.
+
+### Whitelisting
+
+The contract owner can manage the whitelist using addToWhitelist and removeFromWhitelist functions. Only whitelisted addresses can mint during restricted phases.
+
+### Token URI
+
+The owner can set the base URI for token metadata using setBaseTokenUri.
+
+### Withdrawal
+
+The owner can withdraw funds from the contract using the withdraw function.
+
+## Example
+
+Here is an example of how to interact with the contract using ethers.js:
+
+```javascript
+const { ethers } = require("ethers");
+const abi = [
+  /* ABI of the contract */
+];
+const contractAddress = "0xYourContractAddress";
+
+// Connect to Ethereum provider
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const signer = provider.getSigner();
+const contract = new ethers.Contract(contractAddress, abi, signer);
+
+// Set base token URI
+await contract.setBase;
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
