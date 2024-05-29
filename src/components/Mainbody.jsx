@@ -85,10 +85,8 @@ function Mainbody() {
     }
     return (
         <div className="mainbody">
-
-            <h2>Eclipse Coin</h2>
             <div>
-                {connected ? <button onClick={mintFunction}>Mint</button> : <button onClick={connectWallet}>Connect</button>}
+                {connected ? <button onClick={mintFunction}>Mint</button> : <button style={{fontSize: "14px", width: "100px", backgroundColor: "red"}} onClick={connectWallet}>Connect</button>}
             </div>
             <div>
                 {connected ?
@@ -96,7 +94,7 @@ function Mainbody() {
                         <h3>{displayStatus}</h3>
                     </div>
 
-                    : <h2>Connect to Metamask</h2>}
+                    : <h2 style={{fontSize: "14px"}}>Connect your Wallet</h2>}
             </div>
 
             <div>

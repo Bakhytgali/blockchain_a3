@@ -34,6 +34,15 @@ const Buy = ({ state }) => {
               placeholder="Enter Your Message"
             />
           </div>
+          <div className="mb-3 message">
+            <label className="form-label mes">Amount</label>
+            <input
+              type="text"
+              className="form-control"
+              id="amount"
+              placeholder="Enter Your Amount"
+            />
+          </div>
           <button
             type="submit"
             className="btn"

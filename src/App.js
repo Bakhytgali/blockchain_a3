@@ -12,7 +12,6 @@ import React from 'react';
 import AboutUs from "./components/AboutUs";
 import Submit from "./components/submit";
 
-
 function App() {
   
   const [state, setState] = useState({
@@ -59,26 +58,29 @@ function App() {
     };
     connectWallet();
   }, []);
+  
   return (
     <div>
       <NavigationBar />
-      <Mainbody />
-    <div className="container">
-      <h1 className="connected-account alert alert-primary" role="alert" style={{overflow: "hidden", textOverflow: "ellipsis"}}><span className="lead">Connected Account</span>
-        <br />
-        {account}
-      </h1>
-      <Buy state={state} />
-      <Memos state={state} />
-
+      <div className="hero-image">
+        <div style={{display: "flex", flexDirection: "column"}}>
+        <h1 className="hero-text">CARE WAVE</h1>
+        <p className="hero-subtext" style={{textAlign: "center"}}>Small help for you, big help for those in need.</p>
+        </div>
+      </div>
       <AboutUs />
-
+      <div className="container">
+        <h1 className="connected-account alert alert-primary" role="alert" style={{overflow: "hidden", textOverflow: "ellipsis"}}>
+          <span className="lead">Connected Wallet</span>
+          <br />
+          {account}
+        </h1>
+        <Buy state={state} />
+        <Memos state={state} />
+        
+      </div>
     </div>
-    
-  </div>
   );
 }
 
 export default App;
-
-

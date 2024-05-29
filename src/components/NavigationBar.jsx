@@ -1,14 +1,14 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import "../index.css";
+import Mainbody from "../components/Mainbody";
 
 const NavigationBar = () => {
     return (
         <Navbar className="navmenu" expand="lg">
         <div className="container-lg">
-                <Navbar.Brand href="#home">
-                    <img src="https://images.creativefabrica.com/products/thumbnails/2023/10/06/szTD6VhLZ/2WODqbTK2AIXDiE7AKwjZ2kiOpq.png" alt="" width={"10%"}/>
-                    Eclipse
+                <Navbar.Brand href="#home" style={{fontSize: "24px", fontWeight: "600"}}>
+                    Care Wave
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -18,6 +18,7 @@ const NavigationBar = () => {
                         {/*link about should lead to the corresponding component*/}
                     </Nav>
                 </Navbar.Collapse>
+                <Mainbody />
         </div>
         </Navbar>
     );
