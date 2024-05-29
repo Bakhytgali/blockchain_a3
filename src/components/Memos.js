@@ -5,73 +5,35 @@ const Memos = ({ state }) => {
   const { contract } = state;
 
   useEffect(() => {
-    const memosMessage = async () => {
-      const memos = await contract.getMemos();
-      setMemos(memos);
+    const fetchMemos = async () => {
+      const allMemos = await contract.getMemos();
+      const lastFiveMemos = allMemos.slice(Math.max(allMemos.length - 5, 0));
+      setMemos(lastFiveMemos);
     };
-    contract && memosMessage();
+
+    contract && fetchMemos();
   }, [contract]);
 
   return (
     <>
-      <h1 style={{ textAlign: "center", marginTop: "100px", marginBottom: "50px" , color: "white"}} >Messages</h1>
-      {memos.map((memo) => {
+      <h1 style={{ textAlign: "center", marginTop: "100px", marginBottom: "50px", color: "white" }}>Donation History</h1>
+      {memos.map((memo, index) => {
         return (
-          <div
-            className="container-fluid"
-            style={{ width: "100%" }}
-            key={Math.random()}
-          >
-            <table
-              style={{
-                marginBottom: "10px",
-              }}
-            >
+          <div className="container-fluid" style={{ width: "100%" }} key={index}>
+            <table style={{ marginBottom: "10px", backgroundColor: "#070F2B", color: "white", borderCollapse: "collapse", width: "100%" }}>
               <tbody>
                 <tr>
-                  <td
-                    style={{
-                      backgroundColor: "#96D4D4",
-                      border: "1px solid white",
-                      borderCollapse: "collapse",
-                      padding: "7px",
-                      width: "100px",
-                    }}
-                  >
-                    {memo.name}
+                  <td style={{ border: "1px solid white", padding: "10px", width: "25%", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <strong>Name: <br/> </strong> {memo.name}
                   </td>
-                  <td
-                    style={{
-                      backgroundColor: "#96D4D4",
-                      border: "1px solid white",
-                      borderCollapse: "collapse",
-                      padding: "7px",
-                      width: "800px",
-                    }}
-                  >
-                    {new Date(memo.timestamp * 1000).toLocaleString()}
+                  <td style={{ border: "1px solid white", padding: "10px", width: "25%", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <strong>Date: <br/> </strong> {new Date(memo.timestamp * 1000).toLocaleString()}
                   </td>
-                  <td
-                    style={{
-                      backgroundColor: "#96D4D4",
-                      border: "1px solid white",
-                      borderCollapse: "collapse",
-                      padding: "7px",
-                      width: "300px",
-                    }}
-                  >
-                    {memo.message}
+                  <td style={{ border: "1px solid white", padding: "10px", width: "25%", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <strong>Message: <br/> </strong> {memo.message}
                   </td>
-                  <td
-                    style={{
-                      backgroundColor: "#96D4D4",
-                      border: "1px solid white",
-                      borderCollapse: "collapse",
-                      padding: "7px",
-                      width: "400px",
-                    }}
-                  >
-                    {memo.from}
+                  <td style={{ border: "1px solid white", padding: "10px", width: "25%", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <strong>From: <br/> </strong> {memo.from}
                   </td>
                 </tr>
               </tbody>
@@ -82,4 +44,5 @@ const Memos = ({ state }) => {
     </>
   );
 };
+
 export default Memos;

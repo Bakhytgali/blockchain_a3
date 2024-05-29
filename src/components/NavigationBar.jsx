@@ -18,7 +18,6 @@ const NavigationBar = () => {
                         {/*link about should lead to the corresponding component*/}
                     </Nav>
                 </Navbar.Collapse>
-                <Mainbody />
         </div>
         </Navbar>
     );

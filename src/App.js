@@ -11,6 +11,7 @@ import Mainbody from "./components/Mainbody";
 import React from 'react';
 import AboutUs from "./components/AboutUs";
 import Submit from "./components/submit";
+import Cards from "./components/Cards";
 
 function App() {
   
@@ -70,11 +71,15 @@ function App() {
       </div>
       <AboutUs />
       <div className="container">
+      <Mainbody />
         <h1 className="connected-account alert alert-primary" role="alert" style={{overflow: "hidden", textOverflow: "ellipsis"}}>
           <span className="lead">Connected Wallet</span>
           <br />
           {account}
         </h1>
+        
+        <Cards/>
+
         <Buy state={state} />
         <Memos state={state} />
         
