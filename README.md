@@ -1,5 +1,127 @@
 # Getting Started with Create React App
 
+This document provides detailed documentation for each method in the Charity DApp Solidity smart contract.
+
+## Withdraw
+
+### Description
+
+Allows the owner of the contract to withdraw a specified amount of Ether from the contract balance.
+
+### Parameters
+
+- `uint256 _amount`: Amount of Ether (in Wei) to withdraw from the contract.
+
+### Example
+
+```solidity
+// Example usage of withdrawFunds function
+function withdrawFunds(uint256 _amount) external onlyOwner {
+    require(balances[address(this)] >= _amount, "Insufficient funds");
+    payable(owner).transfer(_amount);
+    balances[address(this)] -= _amount;
+}
+```
+
+## Donate
+
+### Description
+
+Allows users to donate Ether to the charity. Each donation is recorded with a message from the donor.
+
+### Parameters
+
+- string memory \_message: Message provided by the donor along with the donation.
+
+### Example
+
+```solidity
+// Example usage of donate function
+function donate(string memory _message) external payable {
+    require(msg.value > 0, "Donation amount must be greater than 0");
+
+    uint256 donationId = donationCount;
+    donations[donationId] = Donation(msg.sender, _message, msg.value, false);
+    donationCount++;
+
+    emit DonationReceived(donationId, msg.sender, _message, msg.value);
+
+    balances[address(this)] += msg.value;
+}
+
+```
+
+## Reward Donor
+
+### Description
+
+Allows the owner of the contract to reward a donor with a virtual coin or token (conceptual representation).
+
+### Parameters
+
+- uint256 \_donationId: ID of the donation to reward.
+
+### Example
+
+```solidity
+// Example usage of rewardDonor function
+function rewardDonor(uint256 _donationId) external onlyOwner {
+    require(_donationId < donationCount, "Invalid donation ID");
+    require(!donations[_donationId].rewarded, "Donor has already been rewarded");
+
+    address donor = donations[_donationId].donor;
+    uint256 amountDonated = donations[_donationId].amount;
+
+    balances[donor] += amountDonated;
+
+    donations[_donationId].rewarded = true;
+}
+
+
+```
+
+## Get Donor Balance
+
+### Description
+
+Returns the balance of virtual coins or tokens (conceptual) for a specific donor.
+
+### Parameters
+
+- address \_donor: Address of the donor whose balance is to be retrieved.
+
+### Example
+
+```solidity
+// Example usage of getDonorBalance function
+function getDonorBalance(address _donor) external view returns (uint256) {
+    return balances[_donor];
+}
+
+```
+
+## Receive Function
+
+### Description
+
+Allows the current owner of the contract to transfer ownership to a new address.
+
+### Parameters
+
+- address \_newOwner: Address of the new owner.
+
+### Example
+
+```solidity
+// Example usage of receive function
+receive() external payable {
+    emit DonationReceived(donationCount, msg.sender, "", msg.value);
+    donationCount++;
+    balances[address(this)] += msg.value;
+}
+
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
