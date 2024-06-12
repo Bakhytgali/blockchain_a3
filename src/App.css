@@ -1,29 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #333;
+    color: #f0f2f5;
+}
+
+.app {
+    text-align: center;
+}
+
 .container {
     margin: 0 auto;
     max-width: 1200px;
     padding: 20px;
-    width: 100%; 
-  }
-  
-  /* Define styles for the text */
-  .text-muted {
-    color: #888888;
-  }
+    width: 100%;
+    background-color: inherit;
+    border-radius: 8px;
+}
 
-  .alert-primary {
-      margin-bottom: 200px;
-  }
+.alert-primary {
+    margin-bottom: 50px;
+    background-color: #006769;
+    color: #fff;
+}
 
-  .lead {
-    font-size: 40px;
-  }
-  
-  /* Define styles for the connected account */
-  .connected-account {
+.lead {
+    font-size: 20px;
+}
+
+.connected-account {
     font-size: 16px;
-  }
-  .mes{
-    color: black;
-  }
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.hero-image {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('https://cf.ltkcdn.net/charity/images/orig/260197-1600x900-Group_Volunteers_Celebrating.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero-text-container {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-text {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.hero-subtext {
+    color: #fff;
+    font-size: 24px;
+}
+
+.about-us-container {
+    color: #333;
+    text-align: center;
+    margin: 100px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: inherit;
+    border-radius: 8px;
+}
+
+.about-us-container h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #006769;
+}
+
+.about-us-intro {
+    margin-top: 40px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.about-us-details {
+    margin-top: 40px;
+    font-size: 18px;
+    color: #fff;
+    opacity: 0.8;
+}

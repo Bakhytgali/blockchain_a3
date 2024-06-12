@@ -1,4 +1,6 @@
 import React from 'react';
+import "../styles/cards.css";
+import "../index.css";
 
 const Cards = () => {
 
@@ -21,16 +23,16 @@ const Cards = () => {
     ];
 
     return (
-        <div className="container">
-            <h3 style={{color: "#fff", fontWeight: "700", fontSize: "30px", textAlign: "center"}}>
+        <div className="container my-5">
+            <h3 className="programs-title">
                 PROGRAMS
             </h3>
             <div className="row justify-content-center mt-5">
                 {programs.map((program, index) => (
-                    <div key={index} className="col-md-3 mb-4">
-                        <div className="card h-100" style={{ borderColor: "#006769", backgroundColor: "#006769" }}>
-                            <img src={program.imgUrl} className="card-img-top" alt={program.title} style={{ height: "200px", objectFit: "cover" }} />
-                            <div className="card-body" style={{ color: "#fff" }}>
+                    <div key={index} className="col-md-4 mb-4">
+                        <div className="card program-card h-100">
+                            <img src={program.imgUrl} className="card-img-top" alt={program.title} />
+                            <div className="card-body">
                                 <h5 className="card-title">{program.title}</h5>
                                 <p className="card-text">{program.subtitle}</p>
                             </div>

@@ -1,11 +1,10 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import "../index.css";
-import Mainbody from "../components/Mainbody";
 
 const NavigationBar = () => {
     return (
-        <Navbar className="navmenu" expand="lg">
+        <Navbar className="navmenu navbar-dark" expand="lg">
         <div className="container-lg">
                 <Navbar.Brand href="#home" style={{fontSize: "24px", fontWeight: "600"}}>
                     Care Wave
